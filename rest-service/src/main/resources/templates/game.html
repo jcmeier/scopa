@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Scopa OSS Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:/ -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    /*<![CDATA[ */
+
+    function drawGame(game) {
+        $('input[name=gameId]').val(game.gameId);
+
+        $('#opponentCards .card').remove();
+        for(i=0; i<game.numberOfCardsOpponent; i++) {
+            $('#opponentCards').prepend('<div class="card BACK"></div>');
+
+        }
+
+        $('#table .card').remove();
+        $.each(game.table, function(index, element) {
+            var card = $('#cardToCopy').clone();
+            card.removeAttr('id');
+            card.addClass(element.type + '-' + element.value);
+            $('#table').prepend(card);
+
+        });
+
+        $('#playerCards .card').remove();
+        $.each(game.hand, function(index, element) {
+            var card = $('#cardToCopy').clone();
+            card.removeAttr('id');
+            card.find('input[name=type]').val(element.type);
+            card.find('input[name=value]').val(element.value);
+            card.addClass(element.type + '-' + element.value);
+            card.click(playCard);
+            $('#playerCards').prepend(card);
+
+        });
+
+        $('#playerStack .card').remove();
+        $.each(game.stack, function(index, element) {
+            var card = $('#cardToCopy').clone();
+            card.removeAttr('id');
+            card.addClass(element.type + '-' + element.value);
+            $('#playerStack').prepend(card);
+
+        });
+
+        $('#opponentPlayedCards .card').remove();
+        if(game.computerTurn) {
+            var card = $('#cardToCopy').clone();
+            card.removeAttr('id');
+            var playedCardCss = game.computerTurn.playedCard.type + '-' + game.computerTurn.playedCard.value;
+            card.addClass(playedCardCss);
+            $('#opponentPlayedCards').prepend(card);
+            $('.' + playedCardCss).addClass('played-card');
+            $.each(game.computerTurn.earnedCards, function(index, element) {
+                var card = $('#cardToCopy').clone();
+                card.removeAttr('id');
+                card.addClass(element.type + '-' + element.value);
+                card.addClass('earned-card');
+                $('#opponentPlayedCards').prepend(card);
+
+            });
+        }
+
+
+
+        if(game.finished) {
+            $.each(game.results.results, function(index, element) {
+                var resultEntry = $('#gameresults .resultentry:first').clone();
+                resultEntry.find('.player-number').append(index);
+                resultEntry.find('.num-coins').append(element.countCoins);
+                resultEntry.find('.golden-seven').append(element.goldenSeven);
+                resultEntry.find('.num-scopa').append(element.numScopa);
+                resultEntry.find('.num-cards').append(element.numCards);
+                resultEntry.find('.num-points').append(element.numPoints);
+                resultEntry.show();
+                $('#gameresults').append(resultEntry);
+            });
+            if(game.results.winner == 0) {
+                $('#winner').text('You win!')
+            } else {
+                $('#winner').text('You loose.')
+            }
+            $('#gameresults').slideDown();
+        }
+    }
+
+    function playCard() {
+        var gameId = $('input[name=gameId]').val();
+        var type = $(this).find('input[name=type]').val();
+        var value = $(this).find('input[name=value]').val();
+
+        $.getJSON('/api/play_card/?gameId=' + gameId + '&type=' + type + '&value=' + value, drawGame);
+    }
+
+    $(document).ready(function() {
+        $.getJSON('/api/start_computergame/', drawGame);
+    });
+    /* ]]> */
+    </script>
+</head>
+<body>
+<input type="hidden" name="gameId" value="" />
+
+<div style="display: none">
+    <div class="card" id="cardToCopy">
+        <input type="hidden" name="type" />
+        <input type="hidden" name="value" />
+    </div>
+</div>
+
+<div class="container">
+	<div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">New Game</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Scopa OSS Project</h3>
+      </div>
+
+
+    <div id="gameresults" style="display: none">
+        <h3>Game is finished - Results</h3>
+        <h4 id="winner"></h4>
+        <div class="resultentry" style="display: none; margin-bottom: 15px;">
+            <div class="player-number">Player: </div>
+            <div class="num-points">Points: </div>
+            <div class="num-coins">Coins: </div>
+            <div class="num-scopa">Scopa: </div>
+            <div class="num-cards">Cards: </div>
+            <div class="golden-seven">Golden seven: </div>
+        </div>
+    </div>
+
+ 	<div id="game-content">
+
+        <div id="playerCards">
+            <br style="clear:both"/>
+        </div>
+
+        <div id="opponentCards">
+            <br style="clear:both"/>
+        </div>
+
+        <div id="playerStack">
+            <br style="clear:both"/>
+        </div>
+
+        <br style="clear: both" />
+
+        <div id="table">
+            <br style="clear:both"/>
+        </div>
+
+        <div id="opponentPlayedCards">
+            <br style="clear:both"/>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

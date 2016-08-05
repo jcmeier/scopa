@@ -1,0 +1,43 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+
+jar {
+    baseName = 'scopa'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile project(':game-engine'), project(':game-bot')
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile fileTree(dir: 'lib', include: ['*.jar'])
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}

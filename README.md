@@ -1,0 +1,2 @@
+# Scopa open source game
+

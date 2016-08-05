@@ -1,0 +1,178 @@
+.container { margin-top: 20px; }
+.card {
+    float: left;
+    border: solid 1px #ccc;
+    border-radius: 15px;
+    height: 120px;
+    width: 74px;
+    margin-right: 15px;
+    padding: 30px;
+    cursor: pointer;
+    background-size: contain;
+}
+.BACK {
+    background-image: url('/img/back.jpg');
+}
+.SWORDS-ONE {
+    background-image: url('/img/swords-1.png');
+}
+.SWORDS-TWO {
+    background-image: url('/img/swords-2.png');
+}
+.SWORDS-THREE {
+    background-image: url('/img/swords-3.png');
+}
+.SWORDS-FOUR {
+    background-image: url('/img/swords-4.png');
+}
+.SWORDS-FIVE {
+    background-image: url('/img/swords-5.png');
+}
+.SWORDS-SIX {
+    background-image: url('/img/swords-6.png');
+}
+.SWORDS-SEVEN {
+    background-image: url('/img/swords-7.png');
+}
+.SWORDS-EIGHT {
+    background-image: url('/img/swords-8.png');
+}
+.SWORDS-NINE {
+    background-image: url('/img/swords-9.png');
+}
+.SWORDS-TEN {
+    background-image: url('/img/swords-10.png');
+}
+.COINS-ONE {
+    background-image: url('/img/gold-1.png');
+}
+.COINS-TWO {
+    background-image: url('/img/gold-2.png');
+}
+.COINS-THREE {
+    background-image: url('/img/gold-3.png');
+}
+.COINS-FOUR {
+    background-image: url('/img/gold-4.png');
+}
+.COINS-FIVE {
+    background-image: url('/img/gold-5.png');
+}
+.COINS-SIX {
+    background-image: url('/img/gold-6.png');
+}
+.COINS-SEVEN {
+    background-image: url('/img/gold-7.png');
+}
+.COINS-EIGHT {
+    background-image: url('/img/gold-8.png');
+}
+.COINS-NINE {
+    background-image: url('/img/gold-9.png');
+}
+.COINS-TEN {
+    background-image: url('/img/gold-10.png');
+}
+.CUPS-ONE {
+    background-image: url('/img/cup-1.png');
+}
+.CUPS-TWO {
+    background-image: url('/img/cup-2.png');
+}
+.CUPS-THREE {
+    background-image: url('/img/cup-3.png');
+}
+.CUPS-FOUR {
+    background-image: url('/img/cup-4.png');
+}
+.CUPS-FIVE {
+    background-image: url('/img/cup-5.png');
+}
+.CUPS-SIX {
+    background-image: url('/img/cup-6.png');
+}
+.CUPS-SEVEN {
+    background-image: url('/img/cup-7.png');
+}
+.CUPS-EIGHT {
+    background-image: url('/img/cup-8.png');
+}
+.CUPS-NINE {
+    background-image: url('/img/cup-9.png');
+}
+.CUPS-TEN {
+    background-image: url('/img/cup-10.png');
+}
+.CLUBS-ONE {
+    background-image: url('/img/clubs-1.png');
+}
+.CLUBS-TWO {
+    background-image: url('/img/clubs-2.png');
+}
+.CLUBS-THREE {
+    background-image: url('/img/clubs-3.png');
+}
+.CLUBS-FOUR {
+    background-image: url('/img/clubs-4.png');
+}
+.CLUBS-FIVE {
+    background-image: url('/img/clubs-5.png');
+}
+.CLUBS-SIX {
+    background-image: url('/img/clubs-6.png');
+}
+.CLUBS-SEVEN {
+    background-image: url('/img/clubs-7.png');
+}
+.CLUBS-EIGHT {
+    background-image: url('/img/clubs-8.png');
+}
+.CLUBS-NINE {
+    background-image: url('/img/clubs-9.png');
+}
+.CLUBS-TEN {
+    background-image: url('/img/clubs-10.png');
+}
+.playerCards {
+    padding: 20px;
+    border-radius: 15px;
+}
+.playerCards-inactive {
+    border: solid 3px #D9EDF7;
+}
+
+.playerCards-active {
+    border: solid 3px green;
+}
+
+#playerCards, #opponentCards {
+    padding: 25px;
+    background-color: #7cd6c1;
+    float: left;
+    margin-right: 30px;
+}
+
+#playerStack {
+    float: left;
+}
+#playerStack .card { height: 90px; width: 55px; }
+#playerStack, #opponentPlayedCards {
+    padding: 25px;
+    background-color: #eee;
+}
+#table {
+    background-color: #d5ffd5;
+    padding: 25px;
+    border: solid 1px #008c00;
+}
+.played-card {
+    border: solid 2px #008c00;
+}
+.earned-card {
+    border: solid 2px #8c0937;
+}
+
+#winner {
+    padding: 25px;
+    background-color: #ffbbbb;
+}
