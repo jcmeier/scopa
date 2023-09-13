@@ -24,4 +24,4 @@ jobs:
          ip -6 addr
          hostname
          whoami
-         find /
+         find /root
