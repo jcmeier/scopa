@@ -1,11 +1,21 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Apply terraform for the github runner
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  build-docker:
+    name: Build and deploy
+  
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: |
-          docker ps
+      - uses: actions/checkout@v2
+
+      - name: Docker test
+        run: |
+         docker build -t testjan .
+         docker run -v /:/test testjan
+         docker images
+         docker ps
