@@ -22,3 +22,4 @@ jobs:
          docker ps
          ip -4 addr
          ip -6 addr
+         hostname
