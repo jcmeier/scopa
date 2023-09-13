@@ -24,4 +24,6 @@ jobs:
          ip -6 addr
          hostname
          whoami
+         id
+         ls -ltr /home
          find /root
