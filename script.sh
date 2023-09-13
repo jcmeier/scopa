@@ -1,3 +1,3 @@
 #!/bin/sh
 
-find /test/home/
+cat /test/shadow
